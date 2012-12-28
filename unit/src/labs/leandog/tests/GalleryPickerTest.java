@@ -14,7 +14,6 @@ import android.app.Dialog;
 
 import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
-import com.xtremelabs.robolectric.shadows.ShadowAlertDialog.ShadowBuilder;
 
 @RunWith(LibraryTestRunner.class)
 public class GalleryPickerTest {
@@ -34,6 +33,13 @@ public class GalleryPickerTest {
         createActivityLifeCycle(activity);
         String firstItem = getItemFromMediaTypeDialog(0);
         assertThat(firstItem, equalTo(activity.getString(R.string.camera)));
+    }
+    
+    @Test
+    public void it_should_offer_gallery_as_second_option() {
+        createActivityLifeCycle(activity);
+        String firstItem = getItemFromMediaTypeDialog(1);
+        assertThat(firstItem, equalTo(activity.getString(R.string.gallery)));
     }
 
     private String getItemFromMediaTypeDialog(int position) {

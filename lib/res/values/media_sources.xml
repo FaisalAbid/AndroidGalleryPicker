@@ -3,5 +3,6 @@
     
     <string-array name="meida_sources">
         <item>@string/camera</item>
+        <item>@string/gallery</item>
     </string-array>
 </resources>
