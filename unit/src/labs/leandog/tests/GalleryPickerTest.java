@@ -7,6 +7,7 @@ import labs.leandog.LibraryTestRunner;
 import labs.leandog.gallery.picker.GalleryPicker;
 import labs.leandog.gallery.picker.R;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -20,9 +21,13 @@ public class GalleryPickerTest {
 
     GalleryPicker activity = new GalleryPicker();
 
+    @Before
+    public void setup() {
+        createActivityLifeCycle(activity);
+    }
+
     @Test
     public void it_should_ask_user_to_pick_from_camera_or_gallery_when_shown() {
-        createActivityLifeCycle(activity);
         String expectedTitle = activity.getString(R.string.get_media_from);
         ShadowDialog shadowDialog = getLatestDialog();
         assertThat(shadowDialog.getTitle().toString(), equalTo(expectedTitle));
@@ -30,14 +35,12 @@ public class GalleryPickerTest {
     
     @Test
     public void it_should_offer_camera_as_first_option() {
-        createActivityLifeCycle(activity);
         String firstItem = getItemFromMediaTypeDialog(0);
         assertThat(firstItem, equalTo(activity.getString(R.string.camera)));
     }
     
     @Test
     public void it_should_offer_gallery_as_second_option() {
-        createActivityLifeCycle(activity);
         String firstItem = getItemFromMediaTypeDialog(1);
         assertThat(firstItem, equalTo(activity.getString(R.string.gallery)));
     }
