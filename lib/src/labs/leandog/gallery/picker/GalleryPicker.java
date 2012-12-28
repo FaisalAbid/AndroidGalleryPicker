@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 @SuppressWarnings("deprecation")
 public class GalleryPicker extends Activity {
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +17,7 @@ public class GalleryPicker extends Activity {
     @Override
     protected Dialog onCreateDialog(int id) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        dialogBuilder.setTitle("Get Media From:");
+        dialogBuilder.setTitle(R.string.get_media_from);
         return dialogBuilder.create();
     }
 

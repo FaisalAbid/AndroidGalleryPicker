@@ -3,8 +3,9 @@ package labs.leandog.tests;
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import labs.leandog.TestRunner;
+import labs.leandog.LibraryTestRunner;
 import labs.leandog.gallery.picker.GalleryPicker;
+import labs.leandog.gallery.picker.R;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,7 @@ import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
 
 
-@RunWith(TestRunner.class)
+@RunWith(LibraryTestRunner.class)
 public class GalleryPickerTest {
 
     GalleryPicker activity = new GalleryPicker();
@@ -25,7 +26,8 @@ public class GalleryPickerTest {
         createActivityLifeCycle(activity);
         Dialog dialog = ShadowAlertDialog.getLatestDialog();
         ShadowDialog shadowDialog = shadowOf(dialog);
-        assertThat(shadowDialog.getTitle().toString(), equalTo("Get Media From:"));
+        String expectedTitle = activity.getString(R.string.get_media_from);
+        assertThat(shadowDialog.getTitle().toString(), equalTo(expectedTitle));
     }
 
     private void createActivityLifeCycle(GalleryPicker activity) {

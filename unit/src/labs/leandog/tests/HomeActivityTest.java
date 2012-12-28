@@ -3,7 +3,7 @@ package labs.leandog.tests;
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
 import static labs.leandog.android.testing.matchers.ActivityCoreMatchers.startedForResult;
 import static org.junit.Assert.assertThat;
-import labs.leandog.TestRunner;
+import labs.leandog.ExampleTestRunner;
 import labs.leandog.gallery.picker.GalleryPicker;
 import labs.leandog.gallery.picker.example.HomeActivity;
 import labs.leandog.gallery.picker.example.R;
@@ -11,7 +11,7 @@ import labs.leandog.gallery.picker.example.R;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(TestRunner.class)
+@RunWith(ExampleTestRunner.class)
 public class HomeActivityTest {
 
     @Test

@@ -1,6 +1,5 @@
 package labs.leandog;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,19 +10,18 @@ import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.RobolectricConfig;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 
-public class TestRunner extends RobolectricTestRunner {
-
-    public TestRunner(Class<?> testClass) throws InitializationError {
-        super(testClass, new RobolectricConfig(new File("../example/")));
-    }
+public abstract class TestRunner extends RobolectricTestRunner {
     
+    public TestRunner(Class<?> testClass, RobolectricConfig robolectricConfig) throws InitializationError {
+        super(testClass, robolectricConfig);
+    }
+
     @Override
     protected void bindShadowClasses() {
         super.bindShadowClasses();
         Robolectric.bindShadowClasses(getShadows());
     }
 
-    
     @Override
     public Object createTest() throws Exception {
         Object test = super.createTest();
@@ -35,5 +33,4 @@ public class TestRunner extends RobolectricTestRunner {
         ArrayList<Class<?>> shadows = new ArrayList<Class<?>>();
         return shadows;
     }
-
 }
