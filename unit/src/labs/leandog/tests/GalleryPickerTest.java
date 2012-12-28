@@ -46,8 +46,7 @@ public class GalleryPickerTest {
     }
 
     private String getItemFromMediaTypeDialog(int position) {
-        String firstItem = (String) ShadowAlertDialog.getLatestAlertDialog().getListView().getItemAtPosition(position);
-        return firstItem;
+        return (String) ShadowAlertDialog.getLatestAlertDialog().getListView().getItemAtPosition(position);
     }
 
     private void createActivityLifeCycle(GalleryPicker activity) {
