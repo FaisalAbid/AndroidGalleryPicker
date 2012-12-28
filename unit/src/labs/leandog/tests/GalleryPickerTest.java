@@ -1,6 +1,7 @@
 package labs.leandog.tests;
 
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
+import static labs.leandog.android.testing.matchers.ActivityCoreMatchers.startedForResult;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import labs.leandog.LibraryTestRunner;
@@ -12,6 +13,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.widget.ListView;
 
 import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
@@ -32,17 +35,38 @@ public class GalleryPickerTest {
         ShadowDialog shadowDialog = getLatestDialog();
         assertThat(shadowDialog.getTitle().toString(), equalTo(expectedTitle));
     }
-    
+
     @Test
     public void it_should_offer_camera_as_first_option() {
         String firstItem = getItemFromMediaTypeDialog(0);
         assertThat(firstItem, equalTo(activity.getString(R.string.camera)));
     }
-    
+
     @Test
     public void it_should_offer_gallery_as_second_option() {
         String firstItem = getItemFromMediaTypeDialog(1);
         assertThat(firstItem, equalTo(activity.getString(R.string.gallery)));
+    }
+
+    @Test
+    public void picking_gallery_should_start_gallery_for_result() {
+        clickOnGallery();
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        assertThat(activity, startedForResult(intent, R.id.result_code_gallery));
+    }
+
+    private void clickOnCamera() {
+        clickOnMediaTypeDialog(0);
+    }
+
+    private void clickOnGallery() {
+        clickOnMediaTypeDialog(1);
+    }
+
+    private void clickOnMediaTypeDialog(int position) {
+        ListView listView = ShadowAlertDialog.getLatestAlertDialog().getListView();
+        listView.performItemClick(null, position, 0);
     }
 
     private String getItemFromMediaTypeDialog(int position) {
