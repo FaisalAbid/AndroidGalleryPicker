@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">ACTIVITY_ENTRY_NAME</string>
     <string name="get_media_from">Get Media From:</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 </resources>

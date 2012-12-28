@@ -18,7 +18,8 @@ public class GalleryPicker extends Activity {
     protected Dialog onCreateDialog(int id) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setTitle(R.string.get_media_from);
+        CharSequence[] items = getResources().getStringArray(R.array.meida_sources);
+        dialogBuilder.setItems(items, null);
         return dialogBuilder.create();
     }
-
 }
