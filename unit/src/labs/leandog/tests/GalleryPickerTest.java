@@ -8,7 +8,6 @@ import labs.leandog.gallery.picker.GalleryPicker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Spy;
 
 import android.app.Dialog;
 
@@ -19,7 +18,6 @@ import com.xtremelabs.robolectric.shadows.ShadowDialog;
 @RunWith(TestRunner.class)
 public class GalleryPickerTest {
 
-    @Spy
     GalleryPicker activity = new GalleryPicker();
 
     @Test
