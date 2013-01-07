@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.style.LineHeightSpan.WithDensity;
 
 @SuppressWarnings("deprecation")
@@ -33,11 +34,20 @@ public class GalleryPicker extends Activity {
         startActivityForResult(intent, R.id.result_code_gallery);
     }
 
+    private void pickImageFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // cameraUri = mediaStoreManager.getUriToRecordPhoto();
+        // intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
+        startActivityForResult(intent, R.id.result_code_camera);
+    }
+
     private class DialogOnClickListener implements DialogInterface.OnClickListener {
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            if (which == 1)
+            if (which == 0)
+                pickImageFromCamera();
+            else if (which == 1)
                 pickImageFromGallery();
         }
     }

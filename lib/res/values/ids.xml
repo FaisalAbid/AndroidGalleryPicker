@@ -2,4 +2,5 @@
 <resources>
     <item name="dialog_id_media_source" type="id"/>
     <item name="result_code_gallery" type="id"/>
+    <item name="result_code_camera" type="id"/>
 </resources>

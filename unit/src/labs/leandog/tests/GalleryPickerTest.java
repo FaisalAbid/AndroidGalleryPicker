@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.widget.ListView;
 
 import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
@@ -46,6 +47,13 @@ public class GalleryPickerTest {
     public void it_should_offer_gallery_as_second_option() {
         String firstItem = getItemFromMediaTypeDialog(1);
         assertThat(firstItem, equalTo(activity.getString(R.string.gallery)));
+    }
+
+    @Test
+    public void picking_camera_should_start_camera_for_result() {
+        clickOnCamera();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        assertThat(activity, startedForResult(intent, R.id.result_code_camera));
     }
 
     @Test
