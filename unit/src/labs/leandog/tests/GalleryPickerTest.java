@@ -1,10 +1,12 @@
 package labs.leandog.tests;
 
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
-import static labs.leandog.android.testing.matchers.ActivityCoreMatchers.startedForResult;
+import static labs.leandog.android.testing.matchers.ActivityCoreMatchers.*;
+import static labs.leandog.android.testing.matchers.IntentCoreMatchers.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import labs.leandog.LibraryTestRunner;
+import labs.leandog.android.testing.matchers.StartedActivityContainingParcealbeMatcher;
 import labs.leandog.gallery.picker.GalleryPicker;
 import labs.leandog.gallery.picker.R;
 
@@ -14,6 +16,8 @@ import org.junit.runner.RunWith;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.widget.ListView;
 
@@ -54,6 +58,13 @@ public class GalleryPickerTest {
         clickOnCamera();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         assertThat(activity, startedForResult(intent, R.id.result_code_camera));
+    }
+    
+    @Test
+    public void it_privides_the_uri_to_record_image_to() {
+        clickOnCamera();
+        Uri expectedValue = Uri.parse("/mnt/sdcard/pictures/2013_01_05-12-15-30-123.jpg");
+        assertThat(activity, startedActivityForResultContainingParcelableExtra(MediaStore.EXTRA_OUTPUT, expectedValue));
     }
 
     @Test
